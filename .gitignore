@@ -29,3 +29,22 @@ apps/static/assets/node_modules
 apps/static/assets/yarn.lock
 apps/static/assets/.temp
 
+
+# Virtual Environment
+church_venv/
+env/
+
+# PyCache
+__pycache__/
+
+# Database & Migrations
+db.sqlite3
+*.pyc
+
+# Environment Files
+.env
+
+
+# Ignore all migration files
+**/migrations/*.py
+!**/migrations/__init__.py  # but keep the __init__.py files
