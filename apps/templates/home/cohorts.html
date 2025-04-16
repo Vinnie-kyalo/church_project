@@ -1,0 +1,47 @@
+{% extends 'layouts/base.html' %}
+{% block content %}
+
+<div class="container">
+  <h2 class="my-4">Student Cohorts</h2>
+
+  {% for year, students in cohorts.items %}
+    <div class="card mb-4">
+      <div class="card-header d-flex justify-content-between align-items-center">
+        <h4 class="mb-0">Cohort {{ year }}</h4>
+        <a href="{% url 'download_students_by_year' year %}" class="btn btn-sm btn-primary">
+          Download PDF
+        </a>
+      </div>
+      <div class="card-body">
+        {% if students %}
+          <table class="table table-bordered table-striped">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Reg No</th>
+                <th>Name</th>
+                <th>Baptism Status</th>
+                <th>Role in Church</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for student in students %}
+              <tr>
+                <td>{{ forloop.counter }}</td>
+                <td>{{ student.reg_no }}</td>
+                <td>{{ student.name }}</td>
+                <td>{{ student.baptism_status }}</td>
+                <td>{{ student.role_in_church }}</td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        {% else %}
+          <p>No students found for {{ year }}.</p>
+        {% endif %}
+      </div>
+    </div>
+  {% endfor %}
+</div>
+
+{% endblock %}

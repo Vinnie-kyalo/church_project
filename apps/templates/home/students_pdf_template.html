@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Students {{ year }}</title>
+</head>
+<body>
+
+  <h2>Students Registered in {{ year }}</h2>
+
+  <table>
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Reg No</th>
+        <th>Name</th>
+        <th>Baptism Status</th>
+        <th>Role in Church</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for student in students %}
+      <tr>
+        <td>{{ forloop.counter }}</td>
+        <td>{{ student.reg_no }}</td>
+        <td>{{ student.name }}</td>
+        <td>{{ student.baptism_status }}</td>
+        <td>{{ student.role_in_church }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+</body>
+</html>

@@ -1,17 +1,23 @@
-# -*- encoding: utf-8 -*-
-"""
-Copyright (c) 2019 - present AppSeed.us
-"""
-
-from django.urls import path, re_path
-from apps.home import views
+from django.urls import path
+from . import views
 
 urlpatterns = [
+    # Homepage
+    path('', views.index, name='index'),
+    
+    # Dashboard
+    path('dashboard/', views.dashboard, name='dashboard'),
 
-    # The home page
-    path('', views.index, name='home'),
+    # Student Cohorts
+    path('cohorts/', views.cohorts_view, name='cohorts'),
+    path('download_students/<int:year>/', views.download_students_by_year, name='download_students_by_year'),
 
-    # Matches any html file
-    re_path(r'^.*\.*', views.pages, name='pages'),
+    # Other sections
+    path('tithe-offerings/', views.tithe_offerings_view, name='tithe_offerings'),
+    path('events-programs/', views.events_programs_view, name='events_programs'),
+    path('promotions/', views.promotions_view, name='promotions'),
+    path('settings/', views.settings_view, name='settings'),
 
+    # Catch-all for other templates (keep last)
+    path('<path:template>', views.pages, name='pages'),
 ]
